@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>HEIF to JPG Converter</title>
+  <style>
+    /* Add some basic styles for the page */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+  </style>
+</head>
+<body>
+  <h1>HEIF to JPG Converter</h1>
+  
+  <form id="uploadForm" enctype="multipart/form-data">
+    <input type="file" id="imageFile" name="imageFile" accept=".heic, .heif">
+    <button type="submit">Convert to JPG</button>
+  </form>
+
+  <div id="outputContainer" style="display: none;">
+    <h2>Converted Image</h2>
+    <img id="outputImage" src="" alt="Converted Image">
+    <a id="downloadLink" href="#" download>Download JPG</a>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script>
+    $(document).ready(function() {
+      // Handle form submission
+      $("#uploadForm").submit(function(event) {
+        event.preventDefault();
+        var form = $(this)[0];
+        var formData = new FormData(form);
+
+        $.ajax({
+          type: "POST",
+          url: "/convert",
+          data: formData,
+          processData: false,
+          contentType: false,
+          success: function(response) {
+            // Display the converted image
+            $("#outputContainer").show();
+            $("#outputImage").attr("src", response.image_url);
+            $("#downloadLink").attr("href", response.image_url);
+          },
+          error: function(error) {
+            alert("Error converting image: " + error.responseText);
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>
