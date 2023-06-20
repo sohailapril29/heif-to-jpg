@@ -8,20 +8,25 @@
       font-family: Arial, sans-serif;
       margin: 20px;
     }
-    #preview {
-      max-width: 500px;
-      margin-bottom: 20px;
+    .grid-container {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-gap: 20px;
+    }
+    .grid-item img {
+      max-width: 100%;
+      height: auto;
     }
   </style>
 </head>
 <body>
   <h1>Image Converter</h1>
   
-  <input type="file" id="imageFile" accept="image/*">
+  <input type="file" id="imageFile" accept="image/*" multiple>
   <button id="convertBtn">Convert to JPG</button>
   
   <h2>Preview:</h2>
-  <div id="preview"></div>
+  <div class="grid-container" id="preview"></div>
   
   <script src="app.js"></script>
 </body>
