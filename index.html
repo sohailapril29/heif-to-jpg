@@ -2,6 +2,8 @@
 <html>
 <head>
   <title>Image Converter</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.6.0/jszip.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
   <style>
     /* Add some basic styles for the page */
     body {
@@ -24,10 +26,13 @@
   
   <input type="file" id="imageFile" accept="image/*" multiple>
   <button id="convertBtn">Convert to JPG</button>
+  <button id="downloadBtn" disabled>Download Zip</button>
   
   <h2>Preview:</h2>
   <div class="grid-container" id="preview"></div>
   
+  <script src="jszip.min.js"></script>
+  <script src="fileSaver.min.js"></script>
   <script src="app.js"></script>
 </body>
 </html>
